@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Components import
-import Card from "./Productcard/Card";
+import Card from "./Product/Card";
 
 //data import
 import "../variables/data";
@@ -14,16 +15,18 @@ const Main = () => {
 				{data.products.map((product) => {
 					return (
 						<div className="col mb-5">
-							<Card
-								key={product.id}
-								poster={product.poster}
-								productName={product.productName}
-								price={product.price}
-								salePrice={product.salePrice}
-								sale={product.sale}
-								rate={product.rate}
-								id={product.id}
-							/>
+							<Link to={"/product/" + product._id}>
+								<Card
+									key={product.id}
+									poster={product.poster}
+									productName={product.productName}
+									price={product.price}
+									salePrice={product.salePrice}
+									sale={product.sale}
+									rate={product.rate}
+									id={product.id}
+								/>
+							</Link>
 						</div>
 					);
 				})}

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //pages import
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
+import Product from "./pages/Product";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -23,6 +24,9 @@ ReactDOM.render(
 				</Route>
 				<Route exact path="/register">
 					<Auth login={false} register={true} />
+				</Route>
+				<Route exact path="/product/:id">
+					<Product />
 				</Route>
 			</Switch>
 		</Router>
