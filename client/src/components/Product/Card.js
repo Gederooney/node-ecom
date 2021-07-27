@@ -9,7 +9,8 @@ import Gradeicon from "../../assets/images/icons/Gradeicon";
 
 const Card = (props) => {
 	let rate = [];
-	for (var i = 0; i < props.rate; i++) rate.push(<Gradeicon color="#d4af37" />);
+	for (var i = 0; i < props.rate; i++)
+		rate.push(<Gradeicon key={i} color="#d4af37" />);
 
 	return (
 		<div className="card h-100">
@@ -50,7 +51,7 @@ const Card = (props) => {
 				<div className="text-center d-flex justify-content-between">
 					<Link
 						className="btn btn-sm btn-outline-dark mt-auto mx-1 text-small"
-						to={"/product/:" + props.productId}>
+						to={"/product/" + props.id}>
 						More
 					</Link>
 					<Link className="btn btn-sm btn-dark mt-auto mx-1" to="/cart">

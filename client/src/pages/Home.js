@@ -11,7 +11,7 @@ const Home = () => {
 		<>
 			<Navbar />
 			<Hero />
-			<section class="py-5">
+			<section className="py-5">
 				<Main />
 			</section>
 			<Footer />
