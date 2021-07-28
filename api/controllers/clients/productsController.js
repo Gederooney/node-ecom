@@ -8,4 +8,13 @@ const getProducts = async (req, res) => {
 	}
 };
 
-export { getProducts };
+const getProductDetails = (req, res) => {
+	try {
+		res.status(200).send(data.products.find((x) => x._id === req.params.id));
+	} catch (err) {
+		console.log(err.message);
+		res.status(500).send("Server Error");
+	}
+};
+
+export { getProducts, getProductDetails };
