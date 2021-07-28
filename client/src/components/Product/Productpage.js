@@ -1,25 +1,35 @@
-import React, { useEffect } from "react";
-import data from "../../variables/data";
+import React, { useEffect, useState } from "react";
+
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { fetchProductDetails } from "../../redux/actions/productsActions";
+import { addToCart } from "../../redux/actions/cartActions";
 
+//icons
 import Carticon from "../../assets/images/icons/Carticon";
+
+//components
 import Relatedproductssession from "./Relatedproductssession";
 
 const Productpage = ({
 	fetchProductDetails,
 	currentProduct,
+	addToCart,
+	cart,
 	loading,
 	error,
+	setLength,
 }) => {
 	let { id } = useParams();
+	const [quantity, setQuantity] = useState(1);
 	useEffect(() => {
 		fetchProductDetails(id);
-		console.log(currentProduct);
 	}, []);
+	const handleChanhe = (e) => {
+		setQuantity(e.target.value);
+	};
 
 	if (!currentProduct) return <>currentProduct not found</>;
 	return (
@@ -54,12 +64,17 @@ const Productpage = ({
 									className="form-control text-center me-3"
 									id="inputQuantity"
 									type="num"
-									value="1"
+									value={quantity}
 									style={{ maxWidth: "3rem" }}
+									onChange={(e) => handleChanhe(e)}
 								/>
 								<button
 									className="btn btn-outline-dark flex-shrink-0"
-									type="button">
+									type="button"
+									onClick={(e) => {
+										addToCart({ currentProduct, quantity });
+										setLength(cart.length);
+									}}>
 									<Carticon />
 									Add to cart
 								</button>
@@ -75,15 +90,22 @@ const Productpage = ({
 
 Productpage.propTypes = {
 	fetchProductDetails: PropTypes.func.isRequired,
+	addToCart: PropTypes.func.isRequired,
+	cart: PropTypes.array.isRequired,
 	currentProduct: PropTypes.object.isRequired,
 	loading: PropTypes.bool.isRequired,
 	error: PropTypes.bool.isRequired,
+	setLength: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
 	currentProduct: state.productDetailReducer.currentProduct,
+	cart: state.cartStateHandler,
 	loading: state.productDetailReducer.loading,
 	error: state.errorReducer.thereIsError,
+	setLength: props.setLength,
 });
 
-export default connect(mapStateToProps, { fetchProductDetails })(Productpage);
+export default connect(mapStateToProps, { fetchProductDetails, addToCart })(
+	Productpage
+);

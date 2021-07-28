@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Carticon from "../../assets/images/icons/Carticon";
+import Cartbutton from "./Cartbutton";
 
 //asset import
 import logo from "../../assets/images/logo.png";
 
-
-
-const Navbar = () => {
+const Navbar = (props) => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<div className="container px-4 px-lg-5">
@@ -69,13 +67,7 @@ const Navbar = () => {
 						</li>
 					</ul>
 					<form className="d-flex">
-						<button className="btn btn-outline-dark" type="submit">
-							<Carticon className="me-1" color="#000000" />
-							Cart
-							<span className="badge bg-dark text-white ms-3 rounded-pill">
-								0
-							</span>
-						</button>
+						<Cartbutton length={props.length} />
 						<Link className="btn" to="/login">
 							Sign In
 						</Link>
