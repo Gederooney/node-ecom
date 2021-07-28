@@ -2,24 +2,24 @@ import React from "react";
 
 const Relatedproducts = () => {
 	return (
-		<div class="col mb-5">
-			<div class="card h-100">
+		<div className="col mb-5">
+			<div className="card h-100">
 				<img
-					class="card-img-top"
+					className="card-img-top"
 					src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
 					alt="..."
 				/>
 
-				<div class="card-body p-4">
-					<div class="text-center">
-						<h5 class="fw-bolder">Fancy Product</h5>
+				<div className="card-body p-4">
+					<div className="text-center">
+						<h5 className="fw-bolder">Fancy Product</h5>
 						$40.00 - $80.00
 					</div>
 				</div>
 
-				<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-					<div class="text-center">
-						<a class="btn btn-outline-dark mt-auto" href="/product/:id">
+				<div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+					<div className="text-center">
+						<a className="btn btn-outline-dark mt-auto" href="/product/:id">
 							View options
 						</a>
 					</div>
