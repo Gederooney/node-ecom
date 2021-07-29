@@ -9,7 +9,14 @@ import { fetchProducts } from "../redux/actions/productsActions";
 import Card from "./Product/Card";
 import Error from "../pages/Error";
 
-const Main = ({ fetchProducts, products, loading, error, errorMessage }) => {
+const Main = ({
+	fetchProducts,
+	products,
+	loading,
+	error,
+	errorMessage,
+	setItems,
+}) => {
 	useEffect(() => {
 		fetchProducts();
 	}, []);
@@ -22,15 +29,7 @@ const Main = ({ fetchProducts, products, loading, error, errorMessage }) => {
 				{products.map((product) => {
 					return (
 						<div className="col mb-5" key={product._id}>
-							<Card
-								poster={product.poster}
-								productName={product.productName}
-								price={product.price}
-								salePrice={product.salePrice}
-								sale={product.sale}
-								rate={product.rate}
-								id={product._id}
-							/>
+							<Card product={product} setItems={setItems} />
 						</div>
 					);
 				})}
@@ -40,13 +39,15 @@ const Main = ({ fetchProducts, products, loading, error, errorMessage }) => {
 };
 Main.propTypes = {
 	fetchProducts: PropTypes.func.isRequired,
+	setItems: PropTypes.func.isRequired,
 	products: PropTypes.array.isRequired,
 	loading: PropTypes.bool.isRequired,
 	error: PropTypes.bool.isRequired,
 	errorMessage: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
+	setItems: props.setItems,
 	products: state.productReducer.list,
 	loading: state.productReducer.loading,
 	error: state.errorReducer.thereIsError,

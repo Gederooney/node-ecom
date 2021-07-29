@@ -12,7 +12,7 @@ const Cartbutton = (props) => {
 				<Carticon className="me-1" color="#000000" />
 				Cart
 				<span className="badge bg-dark text-white ms-3 rounded-pill">
-					{props.length}
+					{props.items}
 				</span>
 			</button>
 		</>
