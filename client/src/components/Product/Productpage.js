@@ -20,7 +20,7 @@ const Productpage = ({
 	cart,
 	loading,
 	error,
-	setLength,
+	setItems,
 }) => {
 	let { id } = useParams();
 	const [quantity, setQuantity] = useState(1);
@@ -72,8 +72,10 @@ const Productpage = ({
 									className="btn btn-outline-dark flex-shrink-0"
 									type="button"
 									onClick={(e) => {
-										addToCart({ currentProduct, quantity });
-										setLength(cart.length);
+										if (!cart.find((x) => x.product._id === currentProduct._id))
+											addToCart({ product: currentProduct, quantity });
+										else alert("Le produit est deja dans le panier");
+										setItems(cart.length);
 									}}>
 									<Carticon />
 									Add to cart
@@ -95,7 +97,7 @@ Productpage.propTypes = {
 	currentProduct: PropTypes.object.isRequired,
 	loading: PropTypes.bool.isRequired,
 	error: PropTypes.bool.isRequired,
-	setLength: PropTypes.func.isRequired,
+	setItems: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
@@ -103,7 +105,7 @@ const mapStateToProps = (state, props) => ({
 	cart: state.cartStateHandler,
 	loading: state.productDetailReducer.loading,
 	error: state.errorReducer.thereIsError,
-	setLength: props.setLength,
+	setItems: props.setItems,
 });
 
 export default connect(mapStateToProps, { fetchProductDetails, addToCart })(

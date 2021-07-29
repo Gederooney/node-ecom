@@ -67,7 +67,7 @@ const Navbar = (props) => {
 						</li>
 					</ul>
 					<form className="d-flex">
-						<Cartbutton length={props.length} />
+						<Cartbutton items={props.items} />
 						<Link className="btn" to="/login">
 							Sign In
 						</Link>
