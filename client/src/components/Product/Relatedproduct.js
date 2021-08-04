@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Relatedproducts = () => {
 	return (
@@ -19,9 +20,9 @@ const Relatedproducts = () => {
 
 				<div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
 					<div className="text-center">
-						<a className="btn btn-outline-dark mt-auto" href="/product/:id">
+						<Link className="btn btn-outline-dark mt-auto" to="/product/1">
 							View options
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store/index";
 
 //components import
+import Shoppingcart from "./components/Shoppingcart/Shoppingcart";
 
 //pages import
 import Home from "./pages/Home";
@@ -13,6 +14,8 @@ import Product from "./pages/product";
 
 const App = () => {
 	const [items, setItems] = useState(0);
+	const [showShoppingCart, setShowShoppingCart] = useState(false);
+	
 	return (
 		<Provider store={store}>
 			<Router>
@@ -28,6 +31,9 @@ const App = () => {
 					</Route>
 					<Route exact path="/product/:id">
 						<Product items={items} setItems={setItems} />
+					</Route>
+					<Route exact path="/cart">
+						<Shoppingcart />
 					</Route>
 				</Switch>
 			</Router>
